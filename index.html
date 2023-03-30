@@ -25,12 +25,25 @@
 <body>
     <div id="app">
         <!-- app_header  -->
-        <header class="app_header ">
+        <header class="app_header text-center ">
+            <h1 class="m-3">Lista della spesa</h1>
         </header>
         <!-- #End app_header  -->
 
         <!--  app_main -->
-        <main class="app_main">
+        <main class="app_main text-center">
+            <div class="m-3">
+                <input type="text" v-model="newTask" @keyup.enter="addToList()">
+                <button @click="addToList()">Aggiungi alla lista</button>
+            </div>
+            <div>
+                <ul class="list-unstyled gap-1">
+                    <li :class="{'text-decoration-line-through': task.done}" v-for="(task, index) in tasks">
+                        <i @click="removeFromList(index)" class="fa fa-arrow-right" aria-hidden="true"></i>
+                        <span @click="markAsDone(index)">{{task.text}}</span>
+                    </li>
+                </ul>
+            </div>
         </main>
         <!-- #end app_main -->
 
@@ -39,7 +52,7 @@
         </footer>
         <!-- #End app_footer  -->
 
-        <!-- div id app for Vue jS -->
+        <!-- #End div id app for Vue jS -->
     </div>
 
     <!-- EXTERNAL Vue3 JS CDN -->
